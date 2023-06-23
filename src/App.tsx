@@ -1,11 +1,11 @@
-import { Button, ButtonGroup, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main"`,
+        base: `"nav" "main"`, //`"row1" "row2"`
         lg: `"nav nav" "aside main"`, //greater than 1024px
       }}
     >

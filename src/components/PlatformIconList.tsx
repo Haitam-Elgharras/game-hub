@@ -11,7 +11,7 @@ import { MdPhoneIphone } from "react-icons/md";
 import { BsGlobe } from "react-icons/bs";
 
 import { Platform } from "../hooks/useGames";
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { AvatarBadge, Badge, HStack, Icon, Text } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface Props {
@@ -37,7 +37,6 @@ const PlatformIconList = ({ platforms }: Props) => {
         <Icon
           key={platform.id}
           as={iconMap[platform.slug]}
-          fontSize={"lg"}
           color={"gray.500"}
         />
       ))}
