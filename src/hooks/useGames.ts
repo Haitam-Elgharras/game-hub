@@ -15,6 +15,10 @@ export interface Game {
   genres: Genre[];
 }
 
-const useGames = () => useData<Game>("/games");
-
+const useGames = (selectedGenre: number | null) => {
+  selectedGenre = selectedGenre !== -1 ? selectedGenre : null;
+  return useData<Game>("/games", { params: { genres: selectedGenre } }, [
+    selectedGenre,
+  ]);
+};
 export default useGames;

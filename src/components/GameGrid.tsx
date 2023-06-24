@@ -8,14 +8,8 @@ interface Props {
 }
 
 const GameGrid = ({ selectedGenre }: Props) => {
-  const { data: games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGames(selectedGenre);
   const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  let gamesFiltered = [...games];
-  if (selectedGenre !== -1) {
-    gamesFiltered = games.filter((game) => {
-      return game.genres.some((genre) => genre.id === selectedGenre);
-    });
-  }
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -35,7 +29,7 @@ const GameGrid = ({ selectedGenre }: Props) => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        {gamesFiltered.map((game) => (
+        {games.map((game) => (
           <GameCardContainer key={game.id}>
             <GameCard game={game} />
           </GameCardContainer>
