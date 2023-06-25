@@ -28,7 +28,7 @@ const useGames = (gameQuery: GameQuery) => {
         search: searchText,
       },
     },
-    []
+    [gameQuery]
   );
 };
 export default useGames;
