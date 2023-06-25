@@ -3,3 +3,4 @@
       we can use this approach to store data that is not going to change often like :
        * genres of games * platforms * etc...
  */
+export {};
