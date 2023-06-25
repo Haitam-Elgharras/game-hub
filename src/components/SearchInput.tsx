@@ -6,7 +6,7 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-export const SearchInput = ({ onSearch }: Props) => {
+const SearchInput = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
     <form
@@ -22,3 +22,4 @@ export const SearchInput = ({ onSearch }: Props) => {
     </form>
   );
 };
+export default SearchInput;
