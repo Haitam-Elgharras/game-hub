@@ -15,7 +15,8 @@ export interface Game {
 }
 
 const useGames = (gameQuery: GameQuery) => {
-  let { selectedGenreId, selectedPlatform, selectedOrder } = gameQuery;
+  let { selectedGenreId, selectedPlatform, selectedOrder, searchText } =
+    gameQuery;
   selectedGenreId = selectedGenreId !== -1 ? selectedGenreId : null;
   return useData<Game>(
     "/games",
@@ -24,6 +25,7 @@ const useGames = (gameQuery: GameQuery) => {
         genres: selectedGenreId,
         platforms: selectedPlatform?.id,
         ordering: selectedOrder,
+        search: searchText,
       },
     },
     [gameQuery]
