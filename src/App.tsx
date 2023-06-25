@@ -8,6 +8,9 @@ import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import { Genre } from "./hooks/useGenres";
 import GameHeading from "./components/GameHeading";
+import CustomizedPalette from "./components/PalettesList";
+// import theme from "./theme";
+// import PalettesData from "./data/PalettesData";
 
 export interface GameQuery {
   selectedGenre: Genre | null;
@@ -15,13 +18,19 @@ export interface GameQuery {
   selectedOrder: string;
   searchText: string;
 }
-function App() {
+interface Props {
+  onThemeChange: (newPalette: string) => void;
+}
+function App({ onThemeChange }: Props) {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   /*const [selectedGenre, setselectedGenre] = useState(-1);
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
   );*/
+  const handleSelectColor = (color: string) => {
+    onThemeChange(color);
+  };
 
   return (
     <Grid
@@ -64,6 +73,7 @@ function App() {
               }
               order={gameQuery.selectedOrder}
             />
+            <CustomizedPalette onSelectColor={handleSelectColor} />
           </HStack>
         </Box>
         <GameGrid gameQuery={gameQuery} />
