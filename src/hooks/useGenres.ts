@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import useData from "./useData";
-import axios from "axios";
-import { FetchResponse } from "./useData";
-import apiClient from "../services/api-client";
+import genres from "../data/genresData";
+import apiClient, { FetchResponse } from "../services/api-client";
 // we use the useData as a generic hook to fetch because the genres and the games have the same structure
 
 export interface Genre {
@@ -21,7 +19,7 @@ const useGenres = () =>
 
     staleTime: 24 * 60 * 60 * 1000, //24 hours
     // the data that will be used before the data is fetched, and if the staleTime is expired a new request will be made
-    // initialData: genres,
+    initialData: genres,
   });
 
 export default useGenres;
