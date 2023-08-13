@@ -18,6 +18,7 @@ const useGames = (gameQuery: GameQuery) => {
   let { selectedGenre, selectedPlatform, selectedOrder, searchText } =
     gameQuery;
 
+  //the fetchresponse type will be a generic inside the pages we recieve from infinite query
   return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam = 1 }) =>
