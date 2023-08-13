@@ -9,25 +9,28 @@ import { Genre } from "./hooks/useGenres";
 import GameHeading from "./components/GameHeading";
 import CustomizedPalette from "./components/PalettesList";
 import { Platform } from "./hooks/usePlatforms";
-// import theme from "./theme";
-// import PalettesData from "./data/PalettesData";
+
+//undefined : absence of a value
+// null: the intentional absence of a value
 
 export interface GameQuery {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  selectedGenreId: number | undefined;
+  selectedPlatformId: number | undefined;
   selectedOrder: string;
   searchText: string;
+}
+export interface GenreAndPlatform {
+  genreName: string;
+  platformName: string;
 }
 interface Props {
   onThemeChange: (newPalette: string) => void;
 }
 function App({ onThemeChange }: Props) {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
-  /*const [selectedGenre, setselectedGenre] = useState(-1);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );*/
+  const [genreAndPlatform, setGenreAndPlatform] = useState<GenreAndPlatform>(
+    {} as GenreAndPlatform
+  );
   const handleSelectColor = (color: string) => {
     onThemeChange(color);
   };
@@ -51,21 +54,26 @@ function App({ onThemeChange }: Props) {
       <Show above="lg">
         <GridItem area="aside" paddingX={5} paddingTop={5}>
           <GenreList
-            onGenreClick={(selectedGenre: Genre) =>
-              setGameQuery({ ...gameQuery, selectedGenre })
-            }
-            selectedGenre={gameQuery.selectedGenre}
+            onGenreClick={({ id: selectedGenreId, name: genreName }: Genre) => {
+              setGameQuery({ ...gameQuery, selectedGenreId });
+              setGenreAndPlatform({ ...genreAndPlatform, genreName });
+            }}
+            selectedGenreId={gameQuery.selectedGenreId}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box marginLeft={9} marginTop={2}>
-          <GameHeading gameQuery={gameQuery} />
+          <GameHeading genreAndPlatform={genreAndPlatform} />
           <HStack marginTop={4}>
             <PlatformSelector
-              onSelectPlatform={(selectedPlatform: Platform) =>
-                setGameQuery({ ...gameQuery, selectedPlatform })
-              }
+              onSelectPlatform={({
+                id: selectedPlatformId,
+                name: platformName,
+              }: Platform) => {
+                setGameQuery({ ...gameQuery, selectedPlatformId });
+                setGenreAndPlatform({ ...genreAndPlatform, platformName });
+              }}
             />
             <SortSelector
               onSelectedOrder={(order: string) =>

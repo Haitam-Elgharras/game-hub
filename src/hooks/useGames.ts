@@ -15,7 +15,7 @@ export interface Game {
 }
 
 const useGames = (gameQuery: GameQuery) => {
-  let { selectedGenre, selectedPlatform, selectedOrder, searchText } =
+  let { selectedGenreId, selectedPlatformId, selectedOrder, searchText } =
     gameQuery;
 
   //the fetchresponse type will be a generic inside the pages we recieve from infinite query
@@ -24,8 +24,8 @@ const useGames = (gameQuery: GameQuery) => {
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
-          genres: selectedGenre?.id,
-          platforms: selectedPlatform?.id,
+          genres: selectedGenreId || undefined,
+          platforms_parent: selectedPlatformId,
           ordering: selectedOrder,
           search: searchText,
 
