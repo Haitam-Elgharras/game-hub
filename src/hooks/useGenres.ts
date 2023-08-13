@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import genres from "../data/genresData";
-import apiClient, { FetchResponse } from "../services/api-client";
+import APIClient, { FetchResponse } from "../services/api-client";
 // we use the useData as a generic hook to fetch because the genres and the games have the same structure
+
+const apiClient = new APIClient<Genre>("/genres");
 
 export interface Genre {
   id: number;
@@ -12,10 +14,7 @@ export interface Genre {
 const useGenres = () =>
   useQuery({
     queryKey: ["genres"],
-    queryFn: () =>
-      apiClient
-        .get<FetchResponse<Genre>>("/genres")
-        .then((res) => res.data.results),
+    queryFn: apiClient.getAll,
 
     staleTime: 24 * 60 * 60 * 1000, //24 hours
     // the data that will be used before the data is fetched, and if the staleTime is expired a new request will be made
