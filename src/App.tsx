@@ -4,11 +4,11 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
-import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import { Genre } from "./hooks/useGenres";
 import GameHeading from "./components/GameHeading";
 import CustomizedPalette from "./components/PalettesList";
+import { Platform } from "./hooks/usePlatforms";
 // import theme from "./theme";
 // import PalettesData from "./data/PalettesData";
 
