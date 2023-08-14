@@ -1,21 +1,19 @@
 import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import GameGrid from "./components/GameGrid";
-import GenreList from "./components/GenreList";
 import { useState } from "react";
+import GameGrid from "./components/GameGrid";
+import GameHeading from "./components/GameHeading";
+import GenreList from "./components/GenreList";
+import NavBar from "./components/NavBar";
+import CustomizedPalette from "./components/PalettesList";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
-import { Genre } from "./hooks/useGenres";
-import GameHeading from "./components/GameHeading";
-import CustomizedPalette from "./components/PalettesList";
-import { Platform } from "./hooks/usePlatforms";
 
 //undefined : absence of a value
 // null: the intentional absence of a value
 
 export interface GameQuery {
-  selectedGenreId: number | undefined;
-  selectedPlatformId: number | undefined;
+  genreId: number | undefined;
+  platformId: number | undefined;
   selectedOrder: string;
   searchText: string;
 }
@@ -28,9 +26,7 @@ interface Props {
 }
 function App({ onThemeChange }: Props) {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-  const [genreAndPlatform, setGenreAndPlatform] = useState<GenreAndPlatform>(
-    {} as GenreAndPlatform
-  );
+
   const handleSelectColor = (color: string) => {
     onThemeChange(color);
   };
@@ -54,25 +50,23 @@ function App({ onThemeChange }: Props) {
       <Show above="lg">
         <GridItem area="aside" paddingX={5} paddingTop={5}>
           <GenreList
-            onGenreClick={({ id: selectedGenreId, name: genreName }: Genre) => {
-              setGameQuery({ ...gameQuery, selectedGenreId });
-              setGenreAndPlatform({ ...genreAndPlatform, genreName });
+            onGenreClick={(genre) => {
+              setGameQuery({ ...gameQuery, genreId: genre.id });
             }}
-            selectedGenreId={gameQuery.selectedGenreId}
+            genreId={gameQuery.genreId}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box marginLeft={9} marginTop={2}>
-          <GameHeading genreAndPlatform={genreAndPlatform} />
+          <GameHeading
+            genreId={gameQuery.genreId}
+            platformId={gameQuery.platformId}
+          />
           <HStack marginTop={4}>
             <PlatformSelector
-              onSelectPlatform={({
-                id: selectedPlatformId,
-                name: platformName,
-              }: Platform) => {
-                setGameQuery({ ...gameQuery, selectedPlatformId });
-                setGenreAndPlatform({ ...genreAndPlatform, platformName });
+              onSelectPlatform={({ id: platformId }) => {
+                setGameQuery({ ...gameQuery, platformId });
               }}
             />
             <SortSelector
