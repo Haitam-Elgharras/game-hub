@@ -68,6 +68,7 @@ function App({ onThemeChange }: Props) {
               onSelectPlatform={({ id: platformId }) => {
                 setGameQuery({ ...gameQuery, platformId });
               }}
+              selectedPlatformId={gameQuery.platformId}
             />
             <SortSelector
               onSelectedOrder={(order: string) =>
