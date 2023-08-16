@@ -34,4 +34,16 @@ const useGameQueryStore = create<GameQueryStore>((set) => ({
     set(() => ({ gameQuery: { searchText } })),
 }));
 
-export default useGameQueryStore;
+// Remove the prop derilling when change the palette
+interface ThemeStore {
+  selectedThemeColor: string;
+  setSelectedThemeColor: (selectedTheme: string) => void;
+}
+
+const useThemeStore = create<ThemeStore>((set) => ({
+  selectedThemeColor: "Default Palette",
+  setSelectedThemeColor: (selectedThemeColor: string) =>
+    set(() => ({ selectedThemeColor })),
+}));
+
+export { useGameQueryStore, useThemeStore };

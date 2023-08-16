@@ -2,12 +2,9 @@ import { Menu, MenuItem, MenuList } from "@chakra-ui/react";
 import { MenuButton } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import { useThemeStore } from "../hooks/store";
 
-interface Props {
-  onSelectColor: (color: string) => void;
-}
-let selectedColor = "";
-const CustomizedPalette = ({ onSelectColor }: Props) => {
+const CustomizedPalette = () => {
   const colors = [
     "Default Palette",
     "Red Palette",
@@ -16,20 +13,16 @@ const CustomizedPalette = ({ onSelectColor }: Props) => {
     "Orange Palette",
     "Pink Palette",
   ];
+  const { selectedThemeColor, setSelectedThemeColor } = useThemeStore();
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedColor || "Select a Palette"}
+        {selectedThemeColor || "Select a Palette"}
       </MenuButton>
       <MenuList>
         {colors.map((color) => (
-          <MenuItem
-            key={color}
-            onClick={() => {
-              selectedColor = color;
-              onSelectColor(color);
-            }}
-          >
+          <MenuItem key={color} onClick={() => setSelectedThemeColor(color)}>
             {color}
           </MenuItem>
         ))}

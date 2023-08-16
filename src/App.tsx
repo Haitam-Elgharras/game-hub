@@ -7,15 +7,7 @@ import CustomizedPalette from "./components/PalettesList";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
-interface Props {
-  onThemeChange: (newPalette: string) => void;
-}
-
-function App({ onThemeChange }: Props) {
-  const handleSelectColor = (color: string) => {
-    onThemeChange(color);
-  };
-
+function App() {
   return (
     <Grid
       templateAreas={{
@@ -41,7 +33,7 @@ function App({ onThemeChange }: Props) {
           <HStack marginTop={4}>
             <PlatformSelector />
             <SortSelector />
-            <CustomizedPalette onSelectColor={handleSelectColor} />
+            <CustomizedPalette />
           </HStack>
         </Box>
         <GameGrid />

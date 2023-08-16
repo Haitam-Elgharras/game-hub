@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import useGameQueryStore from "../hooks/store";
+import { useGameQueryStore } from "../hooks/store";
 import useGenre from "../hooks/useGenre";
 import usePlatform from "../hooks/usePlatform";
 

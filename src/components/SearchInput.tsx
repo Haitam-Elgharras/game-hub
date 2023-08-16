@@ -1,7 +1,7 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import useGameQueryStore from "../hooks/store";
+import { useGameQueryStore } from "../hooks/store";
 
 const SearchInput = () => {
   const setSearchText = useGameQueryStore((s) => s.setSearchText);
