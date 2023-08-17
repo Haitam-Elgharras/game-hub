@@ -1,28 +1,14 @@
-import { ColorModeScript } from "@chakra-ui/color-mode";
-import { ChakraProvider } from "@chakra-ui/provider";
-import { extendTheme } from "@chakra-ui/theme-utils";
-import NavBar from "../components/NavBar";
 import { Outlet } from "react-router-dom";
-import PalettesData from "../data/PalettesData";
-import { useThemeStore } from "../hooks/store";
-import config from "../theme";
+import NavBar from "../components/NavBar";
+import ThemeWrapper from "../components/ThemeWrapper";
 
-export const Layout = () => {
-  // All the pallets components are just for implementing the theme selector
-  const palettes = PalettesData();
-  const selectedThemeColor = useThemeStore((s) => s.selectedThemeColor);
-
-  const theme = extendTheme({
-    config,
-    colors: {
-      gray: palettes[selectedThemeColor],
-    },
-  });
+const Layout = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <ThemeWrapper>
       <NavBar />
       <Outlet />
-    </ChakraProvider>
+    </ThemeWrapper>
   );
 };
+
+export default Layout;
