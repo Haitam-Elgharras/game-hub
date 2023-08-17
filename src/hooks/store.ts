@@ -42,7 +42,7 @@ interface ThemeStore {
 
 const useThemeStore = create<ThemeStore>((set) => ({
   selectedThemeColor:
-    localStorage.getItem("selectedThemeColor") || "Default Palette",
+    localStorage.getItem("selectedThemeColor") || "Dark Palette",
   setSelectedThemeColor: (selectedThemeColor: string) => {
     localStorage.setItem("selectedThemeColor", selectedThemeColor);
     set(() => ({ selectedThemeColor }));

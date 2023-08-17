@@ -6,12 +6,10 @@ import { useThemeStore } from "../hooks/store";
 
 const CustomizedPalette = () => {
   const colors = [
-    "Default Palette",
+    "Dark Palette",
     "Red Palette",
-    "Blue Palette",
-    "Teal Palette",
-    "Orange Palette",
     "Pink Palette",
+    "Blue Palette",
   ];
   const { selectedThemeColor, setSelectedThemeColor } = useThemeStore();
 

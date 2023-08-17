@@ -2,7 +2,7 @@ const PalettesData = () => {
   // we need to create a map contain alot of palletes
 
   const palletesMap: { [key: string]: object } = {
-    "Default Palette": {
+    "Dark Palette": {
       50: "#f9f9f9",
       100: "#ededed",
       200: "#d3d3d3",
