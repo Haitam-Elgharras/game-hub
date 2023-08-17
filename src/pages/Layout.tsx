@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ThemeWrapper from "../components/ThemeWrapper";
+import { Box } from "@chakra-ui/react";
 
 const Layout = () => {
   return (
     <ThemeWrapper>
       <NavBar />
-      <Outlet />
+      <Box>
+        <Outlet />
+      </Box>
     </ThemeWrapper>
   );
 };

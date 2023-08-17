@@ -22,7 +22,7 @@ const GameGrid = () => {
 
   if (error) <Text>{error.message}</Text>;
   return (
-    <Box padding={10}>
+    <Box padding={5}>
       <InfiniteScroll
         dataLength={fetchMoreData || 0} //This is important field to render the next data
         next={() => fetchNextPage()}
@@ -42,6 +42,7 @@ const GameGrid = () => {
             xl: 4,
           }}
           spacing={6}
+          padding={5}
         >
           {isLoading &&
             Skeletons.map((skeleton) => (

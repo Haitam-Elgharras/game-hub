@@ -1,25 +1,19 @@
-import { Heading, Text } from "@chakra-ui/react";
-import useGameDetail from "../hooks/useGameDetail";
 import { useParams } from "react-router-dom";
+import useGame from "../hooks/useGame";
+import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 
 const GameDetailPage = () => {
-  const params = useParams<{ id: string }>();
-  const {
-    data: gameDetail,
-    error,
-    isLoading,
-  } = useGameDetail(+(params.id || "0"));
+  const { slug } = useParams();
+  // var! means this var will never be undefined
+  const { data: game, isLoading, error } = useGame(slug!);
 
+  if (isLoading) return <Spinner />;
+  if (error || !game) throw error;
   return (
-    <>
-      {isLoading && <div>Loading...</div>}
-      {gameDetail && (
-        <div>
-          <Heading>{gameDetail.name}</Heading>
-          <Text>{gameDetail.description_raw}</Text>
-        </div>
-      )}
-    </>
+    <Box padding={5}>
+      <Heading>{game.name} </Heading>
+      <Text>{game.description_raw}</Text>
+    </Box>
   );
 };
 
