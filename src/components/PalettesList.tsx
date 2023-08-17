@@ -22,7 +22,12 @@ const CustomizedPalette = () => {
       </MenuButton>
       <MenuList>
         {colors.map((color) => (
-          <MenuItem key={color} onClick={() => setSelectedThemeColor(color)}>
+          <MenuItem
+            key={color}
+            onClick={() => {
+              return setSelectedThemeColor(color);
+            }}
+          >
             {color}
           </MenuItem>
         ))}

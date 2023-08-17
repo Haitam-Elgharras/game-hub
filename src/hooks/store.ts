@@ -41,9 +41,12 @@ interface ThemeStore {
 }
 
 const useThemeStore = create<ThemeStore>((set) => ({
-  selectedThemeColor: "Default Palette",
-  setSelectedThemeColor: (selectedThemeColor: string) =>
-    set(() => ({ selectedThemeColor })),
+  selectedThemeColor:
+    localStorage.getItem("selectedThemeColor") || "Default Palette",
+  setSelectedThemeColor: (selectedThemeColor: string) => {
+    localStorage.setItem("selectedThemeColor", selectedThemeColor);
+    set(() => ({ selectedThemeColor }));
+  },
 }));
 
 export { useGameQueryStore, useThemeStore };

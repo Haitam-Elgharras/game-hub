@@ -11,6 +11,7 @@ export const Layout = () => {
   // All the pallets components are just for implementing the theme selector
   const palettes = PalettesData();
   const selectedThemeColor = useThemeStore((s) => s.selectedThemeColor);
+
   const theme = extendTheme({
     config,
     colors: {
