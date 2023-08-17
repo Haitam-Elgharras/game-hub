@@ -2,15 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import genres from "../data/genresData";
 import APIClient from "../services/api-client";
+import { Genre } from "../entities/Genre";
 // we use the useData as a generic hook to fetch because the genres and the games have the same structure
 
 const apiClient = new APIClient<Genre>("/genres");
-
-export interface Genre {
-  id: number;
-  name: string;
-  image_background: string;
-}
 
 const useGenres = () =>
   useQuery({
