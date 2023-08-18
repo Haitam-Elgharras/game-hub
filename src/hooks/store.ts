@@ -49,4 +49,15 @@ const useThemeStore = create<ThemeStore>((set) => ({
   },
 }));
 
-export { useGameQueryStore, useThemeStore };
+// fixing the game with no trailer
+interface hasTrailer {
+  hasTrailer: boolean;
+  setHasTrailer: (hasTrailer: boolean) => void;
+}
+
+const useTrailerStore = create<hasTrailer>((set) => ({
+  hasTrailer: true,
+  setHasTrailer: (hasTrailer: boolean) => set(() => ({ hasTrailer })),
+}));
+
+export { useGameQueryStore, useThemeStore, useTrailerStore };
