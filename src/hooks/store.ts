@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 //undefined : absence of a value
 // null: the intentional absence of a value
-export interface GameQuery {
+interface GameQuery {
   genreId?: number;
   platformId?: number;
   selectedOrder?: string;

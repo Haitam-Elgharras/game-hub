@@ -1,7 +1,7 @@
-import { Genre } from "./Genre";
-import { Platform } from "./Platform";
+import Genre from "./Genre";
+import Platform from "./Platform";
 
-export interface Game {
+interface Game {
   id: number;
   name: string;
   background_image: string;
@@ -13,3 +13,5 @@ export interface Game {
   publishers: { id: number; name: string }[];
   genres: Genre[];
 }
+
+export default Game;
