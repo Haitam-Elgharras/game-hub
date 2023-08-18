@@ -5,6 +5,7 @@ import { extendTheme } from "@chakra-ui/theme-utils";
 import PalettesData from "../data/PalettesData";
 import { useThemeStore } from "../hooks/store";
 import config from "../theme";
+import { Box } from "@chakra-ui/react";
 
 interface Props {
   children: ReactNode;
@@ -25,7 +26,7 @@ const ThemeWrapper = ({ children }: Props) => {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      {children}
+      <Box padding={3}>{children}</Box>
     </ChakraProvider>
   );
 };

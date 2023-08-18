@@ -1,4 +1,4 @@
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import useTrailer from "../hooks/useTrailer";
 
 interface Props {
@@ -9,10 +9,11 @@ const Gametrailer = ({ slug }: Props) => {
   const { data: trailer, error, isLoading } = useTrailer(slug);
   const firstTrailer = trailer?.results[0];
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return null;
   if (error || !trailer) throw error;
-  if (!firstTrailer) return null;
-
+  if (!firstTrailer) {
+    return null;
+  }
   return (
     <Box paddingY={4}>
       <video
