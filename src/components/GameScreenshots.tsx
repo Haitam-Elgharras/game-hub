@@ -20,7 +20,19 @@ const GameScreenshots = ({ slug }: Props) => {
     >
       {screens.results.map((screenshot) => (
         <Box>
-          <Image key={screenshot.id} src={screenshot.image} alt="screenshot" />
+          <Image
+            key={screenshot.id}
+            src={screenshot.image}
+            alt="screenshot"
+            borderRadius={5}
+            opacity={0.85}
+            shadow={"xl"}
+            _hover={{
+              transform: "scale(1.04)",
+              transition: "transform 0.15s ease-in",
+              opacity: 1,
+            }}
+          />
         </Box>
       ))}
     </Grid>
